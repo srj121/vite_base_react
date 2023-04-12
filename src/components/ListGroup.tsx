@@ -7,8 +7,8 @@ interface Props {
     OnSelectItem: (item: string) => void;
 }
 function ListGroup({items, heading, OnSelectItem} : Props) {
-
     const [selectedIndex, setSelectedIndex] = useState(-1);
+
         return (
             <>
         <h1>{heading}</h1>
@@ -17,10 +17,15 @@ function ListGroup({items, heading, OnSelectItem} : Props) {
         <ul className="list-group">
 
             {items.map((item,index) =>(
-                <li className={selectedIndex === index ? 'list-group-item active' : 'list-group-item'}
+                <li className={
+                    selectedIndex === index
+                        ? 'list-group-item active'
+                        : 'list-group-item'}
                     key={item}
                     onClick={() => {
-                        setSelectedIndex(index)}}
+                        setSelectedIndex(index);
+                        OnSelectItem(item);
+                    }}
                 >
                     {item}
                 </li>
